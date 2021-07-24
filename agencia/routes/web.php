@@ -34,3 +34,11 @@ Route::get('/test.html', function ()
             );
 });
 
+########################################
+##### BDD
+Route::get('/regiones', function ()
+{
+    //obtenemos listado de regiones
+    $regiones = DB::select('SELECT regID, regNombre FROM regiones');
+    return view('regiones', [ 'regiones'=>$regiones ]);
+});
