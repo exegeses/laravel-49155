@@ -75,5 +75,16 @@ Route::post('/agregarRegion', function ()
     return redirect('/adminRegiones')
                 ->with( [ 'mensaje'=>'Región: '.$regNombre.' agregada correctamente.' ] );
 });
+Route::get('/modificarRegion/{id}', function ($id)
+{
+    $region = DB::select(
+                        'SELECT regID, regNombre
+                            FROM regiones
+                            WHERE regID = :id',
+                                        [ $id ]
+                    );
+    return view('modificarRegion', [ 'region' => $region ]);
+});
+
 ########################################
 ##### CRUD de destinos
