@@ -38,7 +38,7 @@
                     </a>
                 </td>
             </tr>
-        
+
         </tbody>
     </table>
 @endsection

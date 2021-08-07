@@ -77,12 +77,18 @@ Route::post('/agregarRegion', function ()
 });
 Route::get('/modificarRegion/{id}', function ($id)
 {
+    /*
     $region = DB::select(
                         'SELECT regID, regNombre
                             FROM regiones
                             WHERE regID = :id',
                                         [ $id ]
                     );
+    */
+    $region = DB::table('regiones')
+                    ->select('regID', 'regNombre')
+                    ->where('regID', $id)
+                    ->first();
     return view('modificarRegion', [ 'region' => $region ]);
 });
 

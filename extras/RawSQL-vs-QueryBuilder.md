@@ -63,3 +63,27 @@
 	DB::update('UPDATE ....');
 	DB::delete('DELETE FROM...');
 
+## Fluent Query Builder
+
+    DB::table('nTabla')->get();  
+    DB::table('nTabla')->select('nCampo', 'nCampo2')->get();
+    DB::table('nTabla')
+            ->select('nCampo', 'nCampo2')
+            ->where( condicion )
+            ->get(); //fetchAll  
+    DB::table('nTabla')
+            ->where( condicion )
+            ->first();  //fetch   
+    
+    DB::table('nTabla')
+            ->insert( [ 'nCampo'=>valor, 'nCampo2'=>valor2 ] )  
+    
+    DB::table('nTabla')
+            ->where( condicion )
+            ->update( [ 'nCampo'=>valor, 'nCampo2'=>valor2 ] )  
+    
+    DB::table('nTabla')
+            ->where( condicion )
+            ->delete()  
+    
+    
