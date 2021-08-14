@@ -91,6 +91,82 @@ Route::get('/modificarRegion/{id}', function ($id)
                     ->first();
     return view('modificarRegion', [ 'region' => $region ]);
 });
+Route::post('/modificarRegion', function ()
+{
+    $regNombre = $_POST['regNombre'];
+    $regID = $_POST['regID'];
+    //modificamos
+    /*DB::update('
+
+                UPDATE regiones
+                    SET regNombre = :regNombre
+                  WHERE regID = :regID',
+                    [ $regNombre, $regID ]
+        );
+    */
+    DB::table('regiones')
+            ->where('regID', $regID)
+            ->update(
+                [ 'regNombre'=>$regNombre ]
+            );
+    //redirección con mensaje ok (flashing)
+    return redirect('/adminRegiones')
+            ->with( [ 'mensaje'=>'Región: '.$regNombre.' modificada correctamente.' ] );
+});
+Route::get('/eliminarRegion/{id}', function ($id)
+{
+    /*
+    $region = DB::select(
+                    'SELECT regID, regNombre
+                        FROM regiones
+                        WHERE regID = :regID',
+                            [ $regID ]
+                );
+    */
+    $region = DB::table('regiones')
+                    ->where('regID', $id)
+                    ->first(); //fetch
+    return view('eliminarRegion', [ 'region'=>$region ]);
+});
+Route::post('/eliminarRegion', function ()
+{
+    $regID = $_POST['regID'];
+    $regNombre = $_POST['regNombre'];
+    /*
+      DB::delete('DELETE FROM regiones WHERE regID = :id', [ $regID ])
+    */
+    DB::table('regiones')
+                ->where('regID', $regID)
+                ->delete();
+    return redirect('/adminRegiones')
+        ->with( [ 'mensaje'=>'Región: '.$regNombre.' eliminada correctamente.' ] );
+});
 
 ########################################
 ##### CRUD de destinos
+Route::get('/adminDestinos', function ()
+{
+    //obtenemos listado de destinos
+    /*$destinos = DB::select('
+                        SELECT
+                                destID, destNombre, destPrecio,
+                                r.regNombre as region
+                            FROM
+                                destinos as d, regiones as r
+                            WHERE d.regID = r.regID'
+                    );*/
+    /*
+    $destinos = DB::select(
+                    'SELECT destID, destNombre, destPrecio,
+                                r.regNombre as region
+                        FROM destinos as d
+                        INNER JOIN regiones as r
+                            ON d.regID = r.regID'
+                    );
+    */
+    $destinos = DB::table('destinos as d')
+                    ->join( 'regiones as r', 'd.regID', '=', 'r.regID' )
+                    ->select( 'destID', 'destNombre', 'destPrecio', 'r.regNombre as region' )
+                    ->get();
+    return view('adminDestinos', [ 'destinos'=>$destinos ]);
+});

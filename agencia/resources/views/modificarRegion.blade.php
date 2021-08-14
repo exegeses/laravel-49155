@@ -12,6 +12,8 @@
                 <input type="text" name="regNombre"
                        value="{{ $region->regNombre }}"
                        class="form-control">
+                <input type="hidden" name="regID"
+                       value="{{ $region->regID }}">
                 <br>
                 <button class="btn btn-dark">Modificar</button>
                 <a href="/adminRegiones" class="btn btn-outline-secondary ml-3">
