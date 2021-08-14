@@ -170,3 +170,70 @@ Route::get('/adminDestinos', function ()
                     ->get();
     return view('adminDestinos', [ 'destinos'=>$destinos ]);
 });
+Route::get('/agregarDestino', function ()
+{
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
+    return view('agregarDestino', [ 'regiones'=>$regiones ] );
+});
+Route::post('/agregarDestino', function ()
+{
+    //capturamos datos enviados por el form
+    $destNombre = $_POST['destNombre'];
+    $regID = $_POST['regID'];
+    $destPrecio = $_POST['destPrecio'];
+    $destAsientos = $_POST['destAsientos'];
+    $destDisponibles = $_POST['destDisponibles'];
+    //instartamos en tabla destinos
+    DB::table('destinos')
+            ->insert(
+                [
+                    'destNombre' => $destNombre,
+                    'regID' => $regID,
+                    'destPrecio' => $destPrecio,
+                    'destAsientos' => $destAsientos,
+                    'destDisponibles' => $destDisponibles
+                ]
+            );
+    return redirect('/adminDestinos')
+                ->with([ 'mensaje'=>'Destino: '.$destNombre. ' agregado correctamente.' ]);
+});
+Route::get('/modificarDestino/{id}', function($id)
+{
+    //obtenemos listado de regiones
+    $regiones = DB::table('regiones')->get();
+    //obtenemos datos de un destino
+    $destino = DB::table('destinos')
+                    ->where('destID', $id)
+                    ->first(); //fetch()
+    return view('modificarDestino',
+                        [
+                            'regiones'=>$regiones,
+                            'destino'=>$destino
+                        ]
+            );
+});
+Route::post('/modificarDestino', function ()
+{
+    //capturamos datos enviados por el form
+    $destNombre = $_POST['destNombre'];
+    $regID = $_POST['regID'];
+    $destPrecio = $_POST['destPrecio'];
+    $destAsientos = $_POST['destAsientos'];
+    $destDisponibles = $_POST['destDisponibles'];
+    $destID = $_POST['destID'];
+    //modificamos en tabla destinos
+    DB::table('destinos')
+            ->where('destID', $destID)
+            ->update(
+                [
+                    'destNombre' => $destNombre,
+                    'regID' => $regID,
+                    'destPrecio' => $destPrecio,
+                    'destAsientos' => $destAsientos,
+                    'destDisponibles' => $destDisponibles
+                ]
+            );
+    return redirect('/adminDestinos')
+        ->with([ 'mensaje'=>'Destino: '.$destNombre. ' modificado correctamente.' ]);
+});
