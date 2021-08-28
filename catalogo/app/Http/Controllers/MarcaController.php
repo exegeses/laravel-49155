@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -110,6 +111,28 @@ class MarcaController extends Controller
             ->with([ 'mensaje'=>'Marca: '.$mkNombre.' modificada correctamente.' ]);
     }
 
+    private function productoPorMarca($idMarca)
+    {
+        //$check = Producto::where('idMarca', $idMarca)->first();
+        //$check = Producto::firstWhere('idMarca', $idMarca);
+        $check = Producto::where('idMarca', $idMarca)->count();
+        return $check;
+    }
+
+    public function confirmarBaja($id)
+    {
+        //obtenemos datos de Marca por su id
+        $Marca = Marca::find($id);
+
+        //si NO HAY productos de esa marca
+        if ( $this->productoPorMarca($id) == 0 ){
+            //retornamos vista de confirmación
+            return view('eliminarMarca', [ 'Marca'=>$Marca ]);
+        }
+        //redirección con mensaje que no se puede eliminar
+        return redirect('/adminMarcas')
+                ->with(['mensaje'=>'No se puede eliminar la marca: '.$Marca->mkNombre.' ya que tiene productos relacionados.']);
+    }
     /**
      * Remove the specified resource from storage.
      *
