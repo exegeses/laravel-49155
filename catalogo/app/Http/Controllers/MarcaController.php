@@ -61,7 +61,7 @@ class MarcaController extends Controller
         $Marca->save();
         //redirección a admin con mansaje ok
         return redirect('/adminMarcas')
-                    ->with([ 'mensaje'=>'Marca: '.$mkNombre.' agregada correctsmente.' ]);
+                    ->with([ 'mensaje'=>'Marca: '.$mkNombre.' agregada correctamente.' ]);
     }
 
     /**
@@ -83,7 +83,9 @@ class MarcaController extends Controller
      */
     public function edit($id)
     {
-        //
+        //obtenemos Marca por su id
+        $Marca = Marca::find($id);
+        return view('modificarMarca', [ 'Marca'=>$Marca ]);
     }
 
     /**
@@ -93,9 +95,19 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //validar
+        $this->validarForm($request);
+        //obtenemos datos de Marca por id
+        $Marca = Marca::find($request->idMarca);
+        //asigamos atributos
+        $Marca->mkNombre = $mkNombre = $request->mkNombre;
+        //guardamos
+        $Marca->save();
+        //redirección a admin con mansaje ok
+        return redirect('/adminMarcas')
+            ->with([ 'mensaje'=>'Marca: '.$mkNombre.' modificada correctamente.' ]);
     }
 
     /**
