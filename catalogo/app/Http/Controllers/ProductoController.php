@@ -17,7 +17,7 @@ class ProductoController extends Controller
     public function index()
     {
         //obtenemos listado
-        $productos = Producto::with(['getMarca'])->paginate(6);
+        $productos = Producto::with(['getMarca', 'getCategoria'])->paginate(6);
         return view('adminProductos', [ 'productos'=>$productos ]);
     }
 
@@ -135,9 +135,18 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
-        //
+        $Producto = Producto::find($id);
+        $marcas = Marca::all();
+        $categorias = Categoria::all();
+        return view('modificarProducto',
+                        [
+                            'Producto'=>$Producto,
+                            'marcas'=>$marcas,
+                            'categorias'=>$categorias
+                        ]
+                    );
     }
 
     /**

@@ -31,17 +31,17 @@
                 <tr>
                     <td>{{ $producto->prdNombre }}</td>
                     <td>{{ $producto->getMarca->mkNombre }}</td>
-                    <td>{{ $producto->idCategoria }}</td>
+                    <td>{{ $producto->getCategoria->catNombre }}</td>
                     <td>${{ $producto->prdPrecio }}</td>
                     <td>{{ $producto->prdPresentacion }}</td>
                     <td><img src="/productos/{{ $producto->prdImagen }}" class="img-thumbnail"></td>
                     <td>
-                        <a href="/modificarProducto" class="btn btn-outline-secondary">
+                        <a href="/modificarProducto/{{ $producto->idProducto }}" class="btn btn-outline-secondary">
                             Modificar
                         </a>
                     </td>
                     <td>
-                        <a href="/eliminarProducto" class="btn btn-outline-secondary">
+                        <a href="/eliminarProducto/{{ $producto->idProducto }}" class="btn btn-outline-secondary">
                             Eliminar
                         </a>
                     </td>

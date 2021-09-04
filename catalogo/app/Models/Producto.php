@@ -9,6 +9,9 @@ class Producto extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idProducto';
+    public $timestamps = false;
+
     //métodos de ralación
     public function getMarca()
     {
@@ -16,6 +19,15 @@ class Producto extends Model
                         Marca::class,
                         'idMarca',
                         'idMarca'
+        );
+    }
+
+    public function getCategoria()
+    {
+        return $this->belongsTo(
+                        Categoria::class,
+                        'idCategoria',
+                        'idCategoria'
         );
     }
 }
