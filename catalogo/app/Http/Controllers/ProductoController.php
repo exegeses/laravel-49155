@@ -156,9 +156,24 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request)
     {
-        //
+        $this->validarForm($request);
+        $Producto = Producto::find( $request->idProducto );
+        $Producto->prdNombre = $prdNombre = $request->prdNombre;
+        $Producto->prdPrecio = $request->prdPrecio;
+        $Producto->idMarca = $request->idMarca;
+        $Producto->idCategoria = $request->idCategoria;
+        $Producto->prdPresentacion = $request->prdPresentacion;
+        $Producto->prdStock = $request->prdStock;
+        //subir imagen *
+        if( $request->file('prdImagen') ){
+            $Producto->prdImagen = $this->subirImagen($request);
+        }
+        //guardamos
+        $Producto->save();
+        return redirect('adminProductos')
+            ->with([ 'mensaje'=>'Producto: '. $prdNombre. ' modificado correctamente.']);
     }
 
     /**
