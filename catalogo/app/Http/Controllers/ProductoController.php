@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+
+    public function portada()
+    {
+        $productos = Producto::with(['getMarca', 'getCategoria'])->paginate(10);
+        return view('portada', [ 'productos'=>$productos ]);
+    }
     /**
      * Display a listing of the resource.
      *

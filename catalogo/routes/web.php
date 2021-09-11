@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 ##################################
 #### CRUD de marcas
 use App\Http\Controllers\MarcaController;
@@ -42,6 +42,7 @@ Route::delete('/eliminarCategoria', [ CategoriaController::class, 'destroy' ]);
 ####################################
 #### CRUD de productos
 use App\Http\Controllers\ProductoController;
+Route::get('/', [ ProductoController::class, 'portada' ]);
 Route::get('/adminProductos', [ ProductoController::class, 'index' ] );
 Route::get('/agregarProducto', [ ProductoController::class, 'create' ]);
 Route::post('/agregarProducto', [ ProductoController::class, 'store' ]);
