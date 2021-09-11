@@ -131,7 +131,11 @@ class MarcaController extends Controller
         }
         //redirección con mensaje que no se puede eliminar
         return redirect('/adminMarcas')
-                ->with(['mensaje'=>'No se puede eliminar la marca: '.$Marca->mkNombre.' ya que tiene productos relacionados.']);
+                ->with( [
+                            'mensaje' => 'No se puede eliminar la marca: '.$Marca->mkNombre.' ya que tiene productos relacionados.',
+                            'warning' => 'warning'
+                        ]
+                       );
     }
     /**
      * Remove the specified resource from storage.
