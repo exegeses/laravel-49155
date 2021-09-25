@@ -13,9 +13,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+##################################
+### CRUD de marcas
 Route::get('/adminMarcas', [ MarcaController::class, 'index' ])
                 ->middleware(['auth'])
                 ->name('adminMarcas');
+Route::get('/marca/create', [ MarcaController::class, 'create' ])
+                ->middleware(['auth'])
+                ->name('agregarMarca');
 
 ##################################
 ### CRUD de categorías
