@@ -36,7 +36,12 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mkNombre = $request->mkNombre;
+        Marca::create(
+                    [ 'mkNombre'=>$mkNombre ]
+                );
+        return redirect('adminMarcas')
+                ->with(['mensaje'=>'Marca: '.$mkNombre.' agregada correctamente.']);
     }
 
     /**

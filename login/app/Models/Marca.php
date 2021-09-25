@@ -9,5 +9,7 @@ class Marca extends Model
 {
     use HasFactory;
     protected $primaryKey = 'idMarca';
+    protected $fillable = ['mkNombre'];
+    //protected $guarded = [];
     public $timestamps = false;
 }

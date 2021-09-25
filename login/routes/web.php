@@ -21,7 +21,7 @@ Route::get('/adminMarcas', [ MarcaController::class, 'index' ])
 Route::get('/marca/create', [ MarcaController::class, 'create' ])
                 ->middleware(['auth'])
                 ->name('agregarMarca');
-
+Route::post('/marca/store', [ MarcaController::class, 'store' ]);
 ##################################
 ### CRUD de categorías
 Route::get('/adminCategorias', [ CategoriaController::class, 'index' ])
