@@ -10,7 +10,56 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    listado de marcas aquí
+                    <h1 class="text-2xl">Listado de marcas</h1>
+
+                    <div class="grid grid-cols-4 gap-2 w-1/2 mx-auto">
+
+        <!-- encabezado -->
+                        <div class="border border-gray-100 p-3">
+                            id
+                        </div>
+                        <div class="border border-gray-100 p-3">
+                            Marca
+                        </div>
+                        <div class="border border-gray-100 col-span-2 p-3">
+                            <a href="agregarMarca"
+                                    class="bg-gray-100 border border-gray-300 rounded
+                                            text-yellow-600
+                                           hover:bg-gray-50 hover:text-yellow-400
+                                           px-5 py-1">
+                                        Agregar
+                            </a>
+                        </div>
+        <!-- listado -->
+            @foreach( $marcas as $marca )
+                        <div class="border border-gray-100 p-3">
+                            {{ $marca->idMarca }}
+                        </div>
+                        <div class="border border-gray-100 p-3">
+                            {{ $marca->mkNombre }}
+                        </div>
+                        <div class="border border-gray-100 p-3">
+                            <a href="agregarMarca"
+                               class="bg-gray-100 border border-gray-300 rounded
+                                            text-yellow-600
+                                           hover:bg-gray-50 hover:text-yellow-400
+                                           px-5 py-1">
+                                Modificar
+                            </a>
+                        </div>
+                        <div class="border border-gray-100 p-3">
+                            <a href="agregarMarca"
+                               class="bg-gray-100 border border-gray-300 rounded
+                                            text-yellow-600
+                                           hover:bg-gray-50 hover:text-yellow-400
+                                           px-5 py-1">
+                                Eliminar
+                            </a>
+                        </div>
+            @endforeach
+        <!-- fin listado -->
+                    </div>
+                    {{ $marcas->links() }}
 
                 </div>
             </div>
