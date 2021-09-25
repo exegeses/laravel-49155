@@ -22,6 +22,17 @@
                         Marcas
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('adminCategorias')" :active="request()->routeIs('adminCategorias')">
+                        Categorías
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('adminProductos')" :active="request()->routeIs('adminProductos')">
+                        Productos
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->

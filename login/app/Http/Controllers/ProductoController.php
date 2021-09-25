@@ -16,7 +16,7 @@ class ProductoController extends Controller
     {
         $productos = Producto::with([ 'getMarca', 'getCategoria' ])
                         ->paginate(6);
-        return view('adminProductos');
+        return view('adminProductos', [ 'productos'=>$productos ]);
     }
 
     /**

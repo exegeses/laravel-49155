@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Panel de adminstración de Marcas
+            Panel de adminstración de categorías
         </h2>
     </x-slot>
 
@@ -10,9 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <h1 class="text-2xl">Listado de marcas</h1>
+                    <h1 class="text-2xl">Listado de categorías</h1>
 
-                    @if ( session('mensaje') )
+            @if ( session('mensaje') )
                         <div class="max-w-2xl mx-auto my-12 p-3
                             border border-green-300 bg-green-100 text-green-600 rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,7 +20,7 @@
                             </svg>
                             {{ session('mensaje') }}
                         </div>
-                    @endif
+            @endif
 
                     <div class="grid grid-cols-4 gap-2 w-1/2 mx-auto">
 
@@ -29,7 +29,7 @@
                             id
                         </div>
                         <div class="border border-gray-100 p-3">
-                            Marca
+                            Categoría
                         </div>
                         <div class="border border-gray-100 col-span-2 p-3">
                             <a href="agregarMarca"
@@ -41,12 +41,12 @@
                             </a>
                         </div>
         <!-- listado -->
-            @foreach( $marcas as $marca )
+            @foreach( $categorias as $categoria )
                         <div class="border border-gray-100 p-3">
-                            {{ $marca->idMarca }}
+                            {{ $categoria->idCategoria }}
                         </div>
                         <div class="border border-gray-100 p-3">
-                            {{ $marca->mkNombre }}
+                            {{ $categoria->catNombre }}
                         </div>
                         <div class="border border-gray-100 p-3">
                             <a href="agregarMarca"
@@ -69,7 +69,7 @@
             @endforeach
         <!-- fin listado -->
                     </div>
-                    {{ $marcas->links() }}
+                    {{ $categorias->links() }}
 
                 </div>
             </div>
