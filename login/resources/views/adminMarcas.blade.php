@@ -49,7 +49,7 @@
                             {{ $marca->mkNombre }}
                         </div>
                         <div class="border border-gray-100 p-3">
-                            <a href="agregarMarca"
+                            <a href="/marca/edit/{{ $marca->idMarca }}"
                                class="bg-gray-100 border border-gray-300 rounded
                                             text-yellow-600
                                            hover:bg-gray-50 hover:text-yellow-400

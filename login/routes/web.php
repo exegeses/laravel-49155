@@ -21,7 +21,13 @@ Route::get('/adminMarcas', [ MarcaController::class, 'index' ])
 Route::get('/marca/create', [ MarcaController::class, 'create' ])
                 ->middleware(['auth'])
                 ->name('agregarMarca');
-Route::post('/marca/store', [ MarcaController::class, 'store' ]);
+Route::post('/marca/store', [ MarcaController::class, 'store' ])
+                ->middleware(['auth']);
+Route::get('/marca/edit/{id}', [ MarcaController::class, 'edit' ])
+                ->middleware(['auth'])
+                ->name('modificarMarca');
+Route::put('/marca/update', [ MarcaController::class, 'update' ])
+                ->middleware(['auth']);
 ##################################
 ### CRUD de categorías
 Route::get('/adminCategorias', [ CategoriaController::class, 'index' ])
@@ -33,5 +39,9 @@ Route::get('/adminCategorias', [ CategoriaController::class, 'index' ])
 Route::get('/adminProductos', [ ProductoController::class, 'index' ])
                 ->middleware(['auth'])
                 ->name('adminProductos');
+Route::get('/producto/create', [ ProductoController::class, 'create' ])
+                ->middleware(['auth'])
+                ->name('agregarProducto');
+
 
 require __DIR__.'/auth.php';

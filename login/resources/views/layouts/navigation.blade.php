@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('adminMarcas')" :active="request()->routeIs(['adminMarcas', 'agregarMarca'])">
+                    <x-nav-link :href="route('adminMarcas')" :active="request()->routeIs(['adminMarcas', 'agregarMarca', 'modificarMarca'])">
                         Marcas
                     </x-nav-link>
                 </div>
@@ -28,7 +28,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('adminProductos')" :active="request()->routeIs('adminProductos')">
+                    <x-nav-link :href="route('adminProductos')" :active="request()->routeIs(['adminProductos', 'agregarProducto'])">
                         Productos
                     </x-nav-link>
                 </div>
