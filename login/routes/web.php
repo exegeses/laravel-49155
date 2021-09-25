@@ -42,6 +42,7 @@ Route::get('/adminProductos', [ ProductoController::class, 'index' ])
 Route::get('/producto/create', [ ProductoController::class, 'create' ])
                 ->middleware(['auth'])
                 ->name('agregarProducto');
-
+Route::post('/producto/store', [ ProductoController::class, 'store' ])
+                ->middleware(['auth']);
 
 require __DIR__.'/auth.php';

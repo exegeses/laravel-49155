@@ -9,6 +9,7 @@ class Producto extends Model
 {
     use HasFactory;
     protected $primaryKey = 'idProducto';
+    protected $guarded = [];
     public $timestamps = false;
 
     public function getMarca()

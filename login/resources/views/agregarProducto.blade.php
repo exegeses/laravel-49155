@@ -40,6 +40,9 @@
                                 <div class="m-2 flex rounded-md shadow-sm">
                                     <select name="idMarca" id="idMarca" class="focus:ring-yellow-300 focus:border-yellow-300 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         <option value="">Seleccione una marca</option>
+                            @foreach( $marcas as $marca )
+                                        <option value="{{ $marca->idMarca }}">{{ $marca->mkNombre }}</option>
+                            @endforeach
                                     </select>
                                 </div>
 
@@ -49,6 +52,9 @@
                                 <div class="m-2 flex rounded-md shadow-sm">
                                     <select name="idCategoria" id="idCategoria" class="focus:ring-yellow-300 focus:border-yellow-300 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         <option value="">Seleccione una categoría</option>
+                            @foreach( $categorias as $categoria )
+                                        <option value="{{ $categoria->idCategoria }}">{{ $categoria->catNombre }}</option>
+                            @endforeach
                                     </select>
                                 </div>
 
@@ -60,15 +66,6 @@
                                               id="prdDescripcion" class="focus:ring-yellow-300 focus:border-yellow-300 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"></textarea>
                                 </div>
 
-                                <label for="prdStock" class="block text-sm font-medium text-gray-700">
-                                    Stock:
-                                </label>
-                                <div class="m-2 flex rounded-md shadow-sm">
-                                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                    #</span>
-                                    <input type="number" name="prdStock"  min="0"
-                                           id="prdStock" class="focus:ring-yellow-300 focus:border-yellow-300 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
-                                </div>
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">
