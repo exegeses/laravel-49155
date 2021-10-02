@@ -18,6 +18,19 @@ class MarcaController extends Controller
         return view('adminMarcas', [ 'marcas'=>$marcas ]);
     }
 
+    private function validarForm(Request $request)
+    {
+        $request->validate(
+            [
+                'mkNombre'=>'required|min:2|max:30'
+            ],
+            [
+                'mkNombre.required'=>'El campo "Nombre de la marca" es obligatorio.',
+                'mkNombre.min'=>'El campo "Nombre de la marca" debe tener al menos 2 caractéres.',
+                'mkNombre.max'=>'El campo "Nombre de la marca" debe tener 30 caractéres como máximo.'
+            ]
+        );
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -37,6 +50,7 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         $mkNombre = $request->mkNombre;
+        $this->validarForm($request);
         Marca::create(
                     [ 'mkNombre'=>$mkNombre ]
                 );

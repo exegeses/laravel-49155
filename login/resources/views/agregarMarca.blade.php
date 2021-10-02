@@ -12,8 +12,8 @@
                     <h1>Alta de una nueva marca</h1>
 
     <!-- formulario -->
-                    <div class="shadow/marca/store-md rounded-md max-w-3xl mx-auto mb-72">
-                    <form action="" method="post">
+                    <div class="shadow-md rounded-md max-w-3xl mx-auto mb-6">
+                    <form action="/marca/store" method="post">
                     @csrf
                             <div class="p-6 bg-white">
                                 <label for="mkNombre" class="block text-sm font-medium text-gray-700">
@@ -21,6 +21,7 @@
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
                                     <input type="text" name="mkNombre"
+                                           value="{{ old('mkNombre') }}"
                                            id="mkNombre" class="focus:ring-yellow-300 focus:border-yellow-300 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                 </div>
 
@@ -39,7 +40,19 @@
 
                             </div>
                     </form>
+
+
                     </div>
+
+                    @if( $errors->any() )
+                        <div class="bg-red-100 border border-red-400 text-red-700 max-w-2xl mx-auto px-4 py-3 rounded">
+                            <ul>
+                                @foreach( $errors->all() as $error )
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
     <!-- FIN formulario -->
 
